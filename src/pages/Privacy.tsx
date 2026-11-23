@@ -27,8 +27,8 @@ export default function Privacy() {
           <h2>טופס יצירת קשר</h2>
           <p>
             טופס יצירת הקשר באתר מבצע בדיקת תקינות בדפדפן בלבד. הנתונים שהזנתם אינם נשלחים
-            לשרת, אינם נשמרים ואינם מועברים לצד שלישי. עם חיבור הטופס לשרת בעתיד, יעודכן עמוד
-            זה בהתאם.
+            לשרת, אינם נשמרים ואינם מועברים לצד שלישי. לאחר בדיקת התקינות ניתן לפתוח הודעת
+            דוא״ל מוכנה מראש. עם חיבור הטופס לשרת בעתיד, יעודכן עמוד זה בהתאם.
           </p>
 
           <h2>קישורים חיצוניים</h2>
@@ -49,7 +49,11 @@ export default function Privacy() {
             <a href={`mailto:${company.email}`} dir="ltr">
               {company.email}
             </a>{' '}
-            או בטלפון <span className="whitespace-nowrap" dir="ltr">{company.phone}</span>.
+            או בטלפון{' '}
+            <span className="whitespace-nowrap" dir="ltr">
+              {company.phone}
+            </span>
+            .
           </p>
         </div>
       </Section>

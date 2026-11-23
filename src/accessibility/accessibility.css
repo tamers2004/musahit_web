@@ -99,11 +99,27 @@ html.a11y-contrast a {
   text-decoration: underline !important;
 }
 
-html.a11y-contrast :is(.card, .glass, .btn-ghost, .field, .eyebrow) {
+html.a11y-contrast :is(.card, .glass, .btn-ghost, .field, .eyebrow, .glass-dark, .panel-dark) {
   background: #ffffff !important;
   border-color: #000000 !important;
   box-shadow: none !important;
   color: #000000 !important;
+}
+
+html.a11y-contrast :is(.panel-dark, .glass-dark) :is(h1, h2, h3, h4, h5, h6, p, li, span, a, dd, dt) {
+  color: #000000 !important;
+}
+
+html.a11y-contrast :is(.eyebrow-dark, .btn-outline-white) {
+  background: #ffffff !important;
+  border-color: #000000 !important;
+  color: #000000 !important;
+}
+
+html.a11y-contrast .btn-white {
+  background: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
 }
 
 html.a11y-contrast .btn-primary {

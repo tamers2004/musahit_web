@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react'
 import type { ImageAsset } from '@/data/imageAssets'
 import { cn } from '@/lib/utils'
 import { SmartImage } from '@/components/ui/SmartImage'
@@ -60,10 +60,15 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
               <span className="relative block overflow-hidden bg-surface-muted">
                 <SmartImage
                   image={item}
-                  className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 {lightbox ? (
-                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <>
+                    <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/55 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <span className="pointer-events-none absolute bottom-3 left-3 grid h-8 w-8 place-items-center rounded-lg border border-white/20 bg-white/15 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100">
+                      <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
+                    </span>
+                  </>
                 ) : null}
               </span>
               {item.caption ? (
@@ -73,7 +78,7 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
           )
 
           const classes =
-            'group mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-line bg-surface-muted text-start'
+            'group mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-line bg-white text-start shadow-card transition-colors hover:border-brand-500/25'
 
           return lightbox ? (
             <button
@@ -96,7 +101,7 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
       {lightbox && activeItem
         ? createPortal(
             <div
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-ink-950/85 p-4 backdrop-blur-sm sm:p-8"
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-navy-950/90 p-4 backdrop-blur-md sm:p-8"
               role="dialog"
               aria-modal="true"
               aria-label={activeItem.alt}
@@ -106,10 +111,10 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
                 ref={closeRef}
                 type="button"
                 onClick={close}
-                className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full border border-line-strong bg-white/90 text-ink-950 transition-colors hover:bg-surface-muted sm:right-8 sm:top-8"
+                className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20 sm:right-8 sm:top-8"
                 aria-label="סגירת תצוגה"
               >
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5" aria-hidden="true" />
               </button>
 
               {items.length > 1 ? (
@@ -119,15 +124,15 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
                     event.stopPropagation()
                     previous()
                   }}
-                  className="absolute right-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-white/90 text-ink-950 transition-colors hover:bg-surface-muted sm:right-8"
+                  className="absolute right-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20 sm:right-8"
                   aria-label="התמונה הקודמת"
                 >
-                  <ChevronRight className="h-5 w-5" />
+                  <ChevronRight className="h-5 w-5" aria-hidden="true" />
                 </button>
               ) : null}
 
               <figure
-                className="max-h-[85vh] max-w-[92vw] overflow-hidden rounded-2xl border border-line bg-white shadow-2xl"
+                className="max-h-[85vh] max-w-[92vw] overflow-hidden rounded-2xl border border-white/10 bg-white shadow-2xl"
                 onClick={(event) => event.stopPropagation()}
               >
                 <SmartImage
@@ -149,10 +154,10 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
                     event.stopPropagation()
                     next()
                   }}
-                  className="absolute left-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-white/90 text-ink-950 transition-colors hover:bg-surface-muted sm:left-8"
+                  className="absolute left-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/20 sm:left-8"
                   aria-label="התמונה הבאה"
                 >
-                  <ChevronLeft className="h-5 w-5" />
+                  <ChevronLeft className="h-5 w-5" aria-hidden="true" />
                 </button>
               ) : null}
             </div>,

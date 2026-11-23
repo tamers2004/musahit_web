@@ -2,12 +2,16 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 
-type Variant = 'primary' | 'ghost' | 'soft'
+type Variant = 'primary' | 'dark' | 'ghost' | 'white' | 'outlineWhite' | 'soft' | 'link'
 
 const variants: Record<Variant, string> = {
   primary: 'btn-primary',
+  dark: 'btn-dark',
   ghost: 'btn-ghost',
-  soft: 'btn border border-brand-500/20 bg-brand-50 text-brand-700 hover:border-brand-500/40 hover:bg-brand-100',
+  white: 'btn-white',
+  outlineWhite: 'btn-outline-white',
+  soft: 'btn-soft',
+  link: 'btn-link',
 }
 
 type ButtonLinkProps = {
@@ -17,9 +21,18 @@ type ButtonLinkProps = {
   className?: string
   children: ReactNode
   external?: boolean
+  ariaLabel?: string
 }
 
-export function ButtonLink({ to, href, variant = 'primary', className, children, external }: ButtonLinkProps) {
+export function ButtonLink({
+  to,
+  href,
+  variant = 'primary',
+  className,
+  children,
+  external,
+  ariaLabel,
+}: ButtonLinkProps) {
   const classes = cn(variants[variant], className)
 
   if (href) {
@@ -27,6 +40,7 @@ export function ButtonLink({ to, href, variant = 'primary', className, children,
       <a
         href={href}
         className={classes}
+        aria-label={ariaLabel}
         {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
       >
         {children}
@@ -35,7 +49,7 @@ export function ButtonLink({ to, href, variant = 'primary', className, children,
   }
 
   return (
-    <Link to={to ?? '/'} className={classes}>
+    <Link to={to ?? '/'} className={classes} aria-label={ariaLabel}>
       {children}
     </Link>
   )

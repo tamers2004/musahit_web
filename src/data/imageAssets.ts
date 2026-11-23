@@ -1,4 +1,4 @@
-const files = import.meta.glob<string>('../assets/images/**/*.{png,webp,jpg,jpeg}', {
+const files = import.meta.glob<string>('../assets/images/**/*.{png,webp,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 })
@@ -29,7 +29,12 @@ export const images = {
   clientVolvo: asset('clients/client-volvo.png', 116, 116, 'לוגו Volvo'),
   clientMercedes: asset('clients/client-mercedes.png', 202, 116, 'לוגו Mercedes-Benz'),
   clientSubaru: asset('clients/client-subaru.png', 500, 291, 'לוגו Subaru'),
-  clientKia: asset('clients/client-kia.png', 500, 260, 'לוגו Kia'),
+  clientKia: asset('clients/client-kia.svg', 500, 125, 'לוגו Kia'),
+  clientMazda: asset('clients/client-mazda.svg', 2489, 601, 'לוגו Mazda'),
+  clientFord: asset('clients/client-ford.svg', 300, 113, 'לוגו Ford'),
+  clientBmw: asset('clients/client-bmw.svg', 1015, 1015, 'לוגו BMW'),
+  clientToyota: asset('clients/client-toyota.svg', 136, 24, 'לוגו Toyota'),
+  clientLexus: asset('clients/client-lexus.svg', 602, 132, 'לוגו Lexus'),
   clientChrysler: asset('clients/client-chrysler.png', 468, 124, 'לוגו Chrysler'),
   clientPorsche: asset('clients/client-porsche.png', 500, 306, 'לוגו Porsche'),
   clientMaserati: asset('clients/client-maserati.png', 421, 212, 'לוגו Maserati'),

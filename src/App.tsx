@@ -14,6 +14,7 @@ import Contact from '@/pages/Contact'
 import Support from '@/pages/Support'
 import Training from '@/pages/Training'
 import Privacy from '@/pages/Privacy'
+import AccessibilityPage from '@/pages/Accessibility'
 import NotFound from '@/pages/NotFound'
 
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="support" element={<Support />} />
         <Route path="training" element={<Training />} />
         <Route path="privacy" element={<Privacy />} />
+        <Route path="accessibility" element={<AccessibilityPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 

@@ -1,5 +1,8 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { Component, lazy, Suspense, useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
 import { useReducedMotion } from 'framer-motion'
+import { useAccessibility } from '@/accessibility/AccessibilityContext'
+import { cn } from '@/lib/utils'
 
 const HeroScene = lazy(() => import('@/three/HeroScene'))
 
@@ -15,38 +18,50 @@ function supportsWebGL() {
   }
 }
 
-function FallbackVisual() {
-  return (
-    <div className="relative grid h-full w-full place-items-center">
-      <div className="relative h-64 w-64 sm:h-80 sm:w-80">
-        <div className="absolute inset-0 rounded-full bg-brand-500/10 blur-3xl" />
-        <div className="absolute inset-6 rounded-full border border-brand-500/20" />
-        <div className="absolute inset-12 rounded-full border border-cyan-400/15" />
-        <div className="absolute inset-20 rounded-full border border-cyan-400/10" />
-        <div className="absolute inset-0 animate-spin rounded-full border border-transparent border-t-cyan-400/40 [animation-duration:18s]" />
-        <div className="absolute inset-10 animate-[spin_26s_linear_infinite_reverse] rounded-full border border-transparent border-b-sky-400/30" />
-        <div className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-gradient-to-br from-cyan-300 to-sky-500 shadow-soft" />
-      </div>
-    </div>
-  )
+class SceneErrorBoundary extends Component<
+  { children: ReactNode; fallback: ReactNode },
+  { hasError: boolean }
+> {
+  state = { hasError: false }
+
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+
+  render() {
+    return this.state.hasError ? this.props.fallback : this.props.children
+  }
 }
 
-export function HeroCanvas() {
+type HeroCanvasProps = {
+  className?: string
+}
+
+export function HeroCanvas({ className }: HeroCanvasProps) {
   const reduced = useReducedMotion()
+  const { settings } = useAccessibility()
   const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
-    const wide = window.matchMedia('(min-width: 768px)').matches
-    setEnabled(wide && supportsWebGL())
+    const media = window.matchMedia('(min-width: 1280px)')
+    const update = () => setEnabled(media.matches && supportsWebGL())
+
+    update()
+    media.addEventListener('change', update)
+    return () => media.removeEventListener('change', update)
   }, [])
 
-  if (reduced || !enabled) {
-    return <FallbackVisual />
-  }
+  const disabled = reduced || settings.features.disableAnimations || !enabled
 
   return (
-    <Suspense fallback={<FallbackVisual />}>
-      <HeroScene />
-    </Suspense>
+    <div className={cn('pointer-events-none', className)} aria-hidden="true">
+      {disabled ? null : (
+        <SceneErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <HeroScene />
+          </Suspense>
+        </SceneErrorBoundary>
+      )}
+    </div>
   )
 }

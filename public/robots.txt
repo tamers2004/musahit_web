@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.eyalcomp.co.il/sitemap.xml
+Sitemap: https://tamers2004.github.io/musahit_web/sitemap.xml

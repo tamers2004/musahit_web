@@ -1,119 +1,170 @@
-import { useMemo, useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, Line } from '@react-three/drei'
+import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { heroNodeVisuals } from '@/three/heroNodes'
 
-type SceneNode = {
-  position: [number, number, number]
-  size: number
-  color: string
-}
+function buildLineGeometry() {
+  const points: number[] = []
 
-const sceneNodes: SceneNode[] = [
-  { position: [1.9, 0.7, 0.2], size: 0.16, color: '#38bdf8' },
-  { position: [1.2, -1.2, -0.4], size: 0.12, color: '#22d3ee' },
-  { position: [-0.6, -1.5, 0.3], size: 0.14, color: '#06b6d4' },
-  { position: [-1.9, -0.4, -0.2], size: 0.11, color: '#38bdf8' },
-  { position: [-1.4, 1.2, 0.4], size: 0.15, color: '#22d3ee' },
-  { position: [0.2, 1.7, -0.3], size: 0.1, color: '#67e8f9' },
-  { position: [2.3, -0.6, -0.6], size: 0.09, color: '#818cf8' },
-  { position: [-0.3, 0.3, 1.1], size: 0.08, color: '#38bdf8' },
-]
+  for (let index = 0; index < heroNodeVisuals.length; index += 1) {
+    const current = heroNodeVisuals[index]
+    const next = heroNodeVisuals[(index + 1) % heroNodeVisuals.length]
+    points.push(...current.position, ...next.position)
+  }
 
-const connections: Array<[number, number]> = [
-  [0, 1],
-  [1, 2],
-  [2, 3],
-  [3, 4],
-  [4, 5],
-  [5, 0],
-  [0, 3],
-  [1, 4],
-  [2, 5],
-  [0, 7],
-  [1, 7],
-  [4, 7],
-  [6, 0],
-]
-
-function Network() {
-  const group = useRef<THREE.Group>(null)
-
-  useFrame((state, delta) => {
-    if (!group.current) return
-    group.current.rotation.y += delta * 0.12
-    group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.25) * 0.08
-  })
-
-  const lines = useMemo(
-    () =>
-      connections.map(([from, to]) => ({
-        points: [sceneNodes[from].position, sceneNodes[to].position] as [
-          [number, number, number],
-          [number, number, number],
-        ],
-      })),
-    [],
-  )
-
-  return (
-    <group ref={group}>
-      <Float speed={1.4} rotationIntensity={0.4} floatIntensity={0.6}>
-        <mesh>
-          <icosahedronGeometry args={[1.05, 1]} />
-          <meshStandardMaterial
-            color="#0891b2"
-            wireframe
-            emissive="#06b6d4"
-            emissiveIntensity={0.5}
-            transparent
-            opacity={0.55}
-          />
-        </mesh>
-        <mesh>
-          <sphereGeometry args={[0.28, 32, 32]} />
-          <meshStandardMaterial color="#67e8f9" emissive="#22d3ee" emissiveIntensity={1.4} />
-        </mesh>
-      </Float>
-
-      {sceneNodes.map((node, index) => (
-        <Float key={index} speed={1.8 + index * 0.1} floatIntensity={0.8} rotationIntensity={0.2}>
-          <mesh position={node.position}>
-            <sphereGeometry args={[node.size, 24, 24]} />
-            <meshStandardMaterial
-              color={node.color}
-              emissive={node.color}
-              emissiveIntensity={1.1}
-            />
-          </mesh>
-        </Float>
-      ))}
-
-      {lines.map((line, index) => (
-        <Line
-          key={index}
-          points={line.points}
-          color="#38bdf8"
-          lineWidth={1}
-          transparent
-          opacity={0.28}
-        />
-      ))}
-    </group>
-  )
+  const geometry = new THREE.BufferGeometry()
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(points, 3))
+  return geometry
 }
 
 export default function HeroScene() {
-  return (
-    <Canvas
-      camera={{ position: [0, 0, 7], fov: 42 }}
-      dpr={[1, 1.6]}
-      gl={{ antialias: true, alpha: true }}
-    >
-      <ambientLight intensity={0.8} />
-      <pointLight position={[4, 4, 6]} intensity={45} color="#22d3ee" />
-      <pointLight position={[-5, -3, 4]} intensity={28} color="#6366f1" />
-      <Network />
-    </Canvas>
-  )
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    let renderer: THREE.WebGLRenderer
+    try {
+      renderer = new THREE.WebGLRenderer({
+        alpha: true,
+        antialias: true,
+        powerPreference: 'high-performance',
+      })
+    } catch {
+      return
+    }
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5))
+    renderer.setClearColor(0x000000, 0)
+    renderer.domElement.style.display = 'block'
+    renderer.domElement.style.width = '100%'
+    renderer.domElement.style.height = '100%'
+    container.appendChild(renderer.domElement)
+
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100)
+    camera.position.set(0, 0, 7.6)
+
+    const group = new THREE.Group()
+    scene.add(group)
+
+    const sphereGeometry = new THREE.SphereGeometry(1, 24, 24)
+    const nodes = heroNodeVisuals.map((node, index) => {
+      const material = new THREE.MeshStandardMaterial({
+        color: node.color,
+        emissive: node.color,
+        emissiveIntensity: 0.55,
+        metalness: 0.35,
+        roughness: 0.25,
+      })
+      const mesh = new THREE.Mesh(sphereGeometry, material)
+      mesh.position.set(...node.position)
+      mesh.scale.setScalar(node.size)
+      group.add(mesh)
+      return { material, phase: index * 0.9 }
+    })
+
+    const lineGeometry = buildLineGeometry()
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: 0x1d6ff2,
+      transparent: true,
+      opacity: 0.26,
+    })
+    group.add(new THREE.LineSegments(lineGeometry, lineMaterial))
+
+    scene.add(new THREE.AmbientLight(0xffffff, 1.1))
+    const directional = new THREE.DirectionalLight(0xffffff, 2.2)
+    directional.position.set(4, 6, 6)
+    scene.add(directional)
+    const accentLight = new THREE.PointLight(0x35cfd9, 18)
+    accentLight.position.set(-6, -2, 4)
+    scene.add(accentLight)
+
+    const pointer = new THREE.Vector2(0, 0)
+    const onPointerMove = (event: PointerEvent) => {
+      const rect = container.getBoundingClientRect()
+      if (!rect.width || !rect.height) return
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
+    }
+    window.addEventListener('pointermove', onPointerMove, { passive: true })
+
+    let visible = true
+    const intersection = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting
+      },
+      { rootMargin: '120px' },
+    )
+    intersection.observe(container)
+
+    let hidden = document.visibilityState === 'hidden'
+    const onVisibility = () => {
+      hidden = document.visibilityState === 'hidden'
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+
+    let lastWidth = 0
+    let lastHeight = 0
+    const resize = () => {
+      const width = container.clientWidth
+      const height = container.clientHeight
+      if (!width || !height) return
+
+      lastWidth = width
+      lastHeight = height
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5))
+      renderer.setSize(width, height, false)
+      camera.aspect = width / height
+      camera.updateProjectionMatrix()
+    }
+    resize()
+
+    const clock = new THREE.Clock()
+    let frame = 0
+    const animate = () => {
+      frame = requestAnimationFrame(animate)
+
+      if (
+        container.clientWidth &&
+        container.clientHeight &&
+        (container.clientWidth !== lastWidth || container.clientHeight !== lastHeight)
+      ) {
+        resize()
+      }
+
+      if (!visible || hidden) return
+
+      const delta = Math.min(clock.getDelta(), 0.05)
+      const elapsed = clock.elapsedTime
+      group.rotation.y = Math.sin(elapsed * 0.18) * 0.1
+      group.rotation.x = THREE.MathUtils.damp(group.rotation.x, pointer.y * 0.08, 2.5, delta)
+      group.rotation.z = THREE.MathUtils.damp(group.rotation.z, -pointer.x * 0.04, 2.5, delta)
+      group.position.y = Math.sin(elapsed * 0.6) * 0.04
+
+      for (const node of nodes) {
+        node.material.emissiveIntensity = 0.5 + Math.sin(elapsed * 1.2 + node.phase) * 0.08
+      }
+
+      renderer.render(scene, camera)
+    }
+    animate()
+
+    return () => {
+      cancelAnimationFrame(frame)
+      intersection.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
+      window.removeEventListener('pointermove', onPointerMove)
+      sphereGeometry.dispose()
+      lineGeometry.dispose()
+      lineMaterial.dispose()
+      for (const node of nodes) node.material.dispose()
+      renderer.dispose()
+      if (renderer.domElement.parentElement === container) {
+        container.removeChild(renderer.domElement)
+      }
+    }
+  }, [])
+
+  return <div ref={containerRef} className="h-full w-full" />
 }
