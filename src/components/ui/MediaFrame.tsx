@@ -1,0 +1,94 @@
+import type { ImageAsset } from '@/data/imageAssets'
+import { cn } from '@/lib/utils'
+import { SmartImage } from '@/components/ui/SmartImage'
+
+type VisualProps = {
+  image: ImageAsset
+  className?: string
+  imageClassName?: string
+  priority?: boolean
+  label?: string
+}
+
+export function BrowserFrame({ image, className, imageClassName, priority, label }: VisualProps) {
+  return (
+    <div
+      className={cn(
+        'overflow-hidden rounded-2xl border border-white/10 bg-ink-900 shadow-2xl shadow-black/30',
+        className,
+      )}
+    >
+      <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
+        <div className="flex gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-rose-400/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
+        </div>
+        {label ? (
+          <span className="truncate text-[10px] font-medium tracking-wide text-slate-400" dir="ltr">
+            {label}
+          </span>
+        ) : null}
+      </div>
+      <div className="aspect-[16/10] overflow-hidden bg-ink-950">
+        <SmartImage
+          image={image}
+          priority={priority}
+          className={cn('h-full w-full object-cover object-top', imageClassName)}
+        />
+      </div>
+    </div>
+  )
+}
+
+export function MediaCard({ image, className, imageClassName, priority }: VisualProps) {
+  return (
+    <div
+      className={cn(
+        'relative overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-white via-slate-50 to-slate-200 p-2 shadow-2xl shadow-black/25 sm:p-3',
+        className,
+      )}
+    >
+      <div className="overflow-hidden rounded-2xl bg-white">
+        <SmartImage
+          image={image}
+          priority={priority}
+          className={cn('h-auto w-full object-contain', imageClassName)}
+        />
+      </div>
+    </div>
+  )
+}
+
+export function PhoneMockup({ image, className, priority }: VisualProps) {
+  return (
+    <div className={cn('mx-auto w-full max-w-[220px]', className)}>
+      <div className="relative rounded-[2.25rem] border border-white/15 bg-ink-950 p-2 shadow-2xl shadow-black/40">
+        <div className="relative aspect-[9/19] overflow-hidden rounded-[1.7rem] bg-white">
+          <span className="absolute left-1/2 top-2 z-10 h-3.5 w-16 -translate-x-1/2 rounded-full bg-ink-950" />
+          <SmartImage
+            image={image}
+            priority={priority}
+            className="h-full w-full object-cover object-top"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function LogoTile({ image, className }: { image: ImageAsset; className?: string }) {
+  return (
+    <div
+      className={cn(
+        'group flex h-24 items-center justify-center rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20',
+        className,
+      )}
+    >
+      <SmartImage
+        image={image}
+        className="max-h-12 w-auto max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
+      />
+    </div>
+  )
+}
