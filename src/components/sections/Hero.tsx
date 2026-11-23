@@ -31,7 +31,7 @@ export function Hero() {
             <ButtonLink to="/contact" variant="ghost">
               צרו קשר
             </ButtonLink>
-            <a href={company.phoneHref} className="btn-ghost" dir="ltr">
+            <a href={company.phoneHref} className="btn-ghost whitespace-nowrap" dir="ltr">
               <Phone className="h-4 w-4 text-cyan-300" />
               {company.phone}
             </a>

@@ -80,7 +80,7 @@ export default function Support() {
               <div className="flex items-center justify-between gap-4">
                 <dt className="text-slate-400">טלפון</dt>
                 <dd>
-                  <a href={company.phoneHref} className="font-semibold text-white" dir="ltr">
+                  <a href={company.phoneHref} className="whitespace-nowrap font-semibold text-white" dir="ltr">
                     {company.phone}
                   </a>
                 </dd>

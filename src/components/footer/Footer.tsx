@@ -78,7 +78,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-cyan-300" />
-                <a href={company.phoneHref} className="hover:text-white" dir="ltr">
+                <a href={company.phoneHref} className="whitespace-nowrap hover:text-white" dir="ltr">
                   {company.phone}
                 </a>
               </li>

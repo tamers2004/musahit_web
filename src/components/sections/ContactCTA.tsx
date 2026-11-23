@@ -40,7 +40,7 @@ export function ContactCTA() {
                       <span>
                         <span className="block text-xs text-slate-500">{item.label}</span>
                         <span
-                          className="mt-0.5 block text-sm text-slate-200"
+                          className={`mt-0.5 block text-sm text-slate-200${item.ltr ? ' whitespace-nowrap' : ''}`}
                           dir={item.ltr ? 'ltr' : undefined}
                         >
                           {item.value}

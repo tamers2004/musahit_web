@@ -94,7 +94,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href={company.phoneHref}
-            className="hidden items-center gap-2 rounded-xl border border-white/10 px-3 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-cyan-400/40 hover:text-white md:inline-flex"
+            className="hidden items-center gap-2 whitespace-nowrap rounded-xl border border-white/10 px-3 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-cyan-400/40 hover:text-white md:inline-flex"
             dir="ltr"
           >
             <Phone className="h-4 w-4 text-cyan-300" />
@@ -185,7 +185,7 @@ export function Header() {
                 <Link to="/contact" className="btn-primary w-full">
                   צרו קשר
                 </Link>
-                <a href={company.phoneHref} className="btn-ghost w-full" dir="ltr">
+                <a href={company.phoneHref} className="btn-ghost w-full whitespace-nowrap" dir="ltr">
                   <Phone className="h-4 w-4" />
                   {company.phone}
                 </a>

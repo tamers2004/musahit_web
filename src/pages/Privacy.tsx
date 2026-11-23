@@ -49,7 +49,7 @@ export default function Privacy() {
             <a href={`mailto:${company.email}`} dir="ltr">
               {company.email}
             </a>{' '}
-            או בטלפון <span dir="ltr">{company.phone}</span>.
+            או בטלפון <span className="whitespace-nowrap" dir="ltr">{company.phone}</span>.
           </p>
         </div>
       </Section>
