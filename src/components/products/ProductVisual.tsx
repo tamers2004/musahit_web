@@ -23,7 +23,7 @@ export function ProductVisual({ product, className, priority }: ProductVisualPro
   return (
     <div className={cn('relative', className)}>
       <MediaCard image={product.image} priority={priority} />
-      <span className="pointer-events-none absolute bottom-4 left-4 rounded-full border border-ink-950/10 bg-ink-950/90 px-3 py-1 text-[10px] font-semibold tracking-wide text-white shadow-lg">
+      <span className="pointer-events-none absolute bottom-4 left-4 rounded-full border border-line bg-white/95 px-3 py-1 text-[10px] font-semibold tracking-wide text-ink-900 shadow-card">
         {product.latin ?? product.name}
       </span>
     </div>

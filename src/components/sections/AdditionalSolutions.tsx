@@ -10,7 +10,7 @@ import { ButtonLink } from '@/components/ui/ButtonLink'
 
 export function AdditionalSolutions() {
   return (
-    <Section className="border-t border-white/5">
+    <Section className="border-t border-line bg-surface-muted">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeading
           eyebrow="הרחבות ומודולים"
@@ -23,12 +23,12 @@ export function AdditionalSolutions() {
         </ButtonLink>
       </div>
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {featuredModules.map((module, index) => (
           <Reveal key={module.slug} delay={index * 0.06}>
             <Link to={`/modules/${module.slug}`} className="card group flex h-full flex-col p-5">
               {module.image ? (
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                <div className="relative overflow-hidden rounded-xl border border-line bg-white">
                   <SmartImage
                     image={module.image}
                     className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -36,17 +36,17 @@ export function AdditionalSolutions() {
                   <ModuleGlyph
                     module={module}
                     size="sm"
-                    className="absolute bottom-2 right-2 shadow-lg ring-1 ring-black/5"
+                    className="absolute bottom-2 right-2 shadow-card ring-1 ring-ink-950/5"
                   />
                 </div>
               ) : (
                 <ModuleGlyph module={module} size="md" />
               )}
-              <h3 className="mt-5 text-lg font-bold text-white transition-colors group-hover:text-cyan-200">
+              <h3 className="mt-5 text-lg font-bold text-ink-950 transition-colors group-hover:text-brand-600">
                 {module.name}
               </h3>
-              <p className="mt-2 flex-1 text-sm leading-7 text-slate-400">{module.short}</p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
+              <p className="mt-2 flex-1 text-sm leading-7 text-muted">{module.short}</p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-600">
                 לפרטים
                 <ArrowLeft className="h-4 w-4" />
               </span>
@@ -55,12 +55,12 @@ export function AdditionalSolutions() {
         ))}
       </div>
 
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5">
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
         {featuredModules.map((module) => (
           <Link
             key={module.slug}
             to={`/modules/${module.slug}`}
-            className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-slate-300 transition hover:border-cyan-400/30 hover:text-white"
+            className="rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-ink-700 transition hover:border-brand-500/40 hover:text-brand-600"
           >
             {module.name}
           </Link>

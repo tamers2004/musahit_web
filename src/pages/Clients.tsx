@@ -36,12 +36,12 @@ export default function Clients() {
           {clientGroups.map((group, index) => (
             <Reveal key={group.importer} delay={index * 0.06}>
               <div className="card flex h-full flex-col p-8">
-                <h2 className="text-2xl font-bold text-white">{group.importer}</h2>
+                <h2 className="text-2xl font-bold text-ink-950">{group.importer}</h2>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {group.brands.map((brand) => (
                     <span
                       key={brand}
-                      className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-slate-300"
+                      className="rounded-full border border-line bg-surface-muted px-3 py-1.5 text-sm text-ink-700"
                     >
                       {brand}
                     </span>
@@ -53,7 +53,7 @@ export default function Clients() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/5">
+      <Section className="border-t border-line">
         <SectionHeading
           eyebrow="מותגים"
           title="מותגי הרכב שאיתם אנו עובדים"

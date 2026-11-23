@@ -31,15 +31,15 @@ export default function Services() {
           {services.map((service, index) => (
             <Reveal key={service.slug} delay={index * 0.06}>
               <article className="card flex h-full flex-col p-6 sm:p-8">
-                <span className="grid h-12 w-12 place-items-center rounded-xl border border-cyan-400/20 bg-cyan-400/5 text-cyan-300">
+                <span className="grid h-12 w-12 place-items-center rounded-xl border border-brand-500/20 bg-brand-50 text-brand-600">
                   <Icon name={service.icon} className="h-5 w-5" />
                 </span>
-                <h2 className="mt-5 text-2xl font-bold text-white">{service.name}</h2>
-                <p className="mt-2 text-sm leading-7 text-slate-400">{service.short}</p>
+                <h2 className="mt-5 text-2xl font-bold text-ink-950">{service.name}</h2>
+                <p className="mt-2 text-sm leading-7 text-muted">{service.short}</p>
                 <ul className="mt-5 space-y-2.5">
                   {service.description.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
+                    <li key={item} className="flex items-start gap-2 text-sm text-ink-700">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
                       <span>{item}</span>
                     </li>
                   ))}

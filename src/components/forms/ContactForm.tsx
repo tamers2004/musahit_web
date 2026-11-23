@@ -74,10 +74,10 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-emerald-400/30 bg-emerald-400/5 p-6 sm:p-8">
-        <CheckCircle2 className="h-9 w-9 text-emerald-400" />
-        <h3 className="mt-4 text-xl font-bold text-white">הפרטים עברו בדיקת תקינות</h3>
-        <p className="mt-2 text-sm leading-7 text-slate-300">
+      <div className="rounded-2xl border border-emerald-500/30 bg-emerald-50 p-6 sm:p-8">
+        <CheckCircle2 className="h-9 w-9 text-emerald-600" />
+        <h3 className="mt-4 text-xl font-bold text-ink-950">הפרטים עברו בדיקת תקינות</h3>
+        <p className="mt-2 text-sm leading-7 text-ink-700">
           הטופס מלא ותקין. שליחת הפנייה לשרת טרם חוברה בשלב זה, ולכן לא נשלח דבר.
           לחזרה מהירה ניתן להתקשר או לכתוב לדוא״ל המופיעים לצד הטופס.
         </p>
@@ -93,7 +93,7 @@ export function ContactForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="fullName">
-            שם מלא <span className="text-cyan-400">*</span>
+            שם מלא <span className="text-brand-500">*</span>
           </label>
           <input
             id="fullName"
@@ -107,7 +107,7 @@ export function ContactForm() {
             aria-describedby={errors.fullName ? 'fullName-error' : undefined}
           />
           {errors.fullName ? (
-            <p id="fullName-error" className="mt-1.5 text-xs text-rose-300">
+            <p id="fullName-error" className="mt-1.5 text-xs text-rose-600">
               {errors.fullName}
             </p>
           ) : null}
@@ -115,7 +115,7 @@ export function ContactForm() {
 
         <div>
           <label className="label" htmlFor="phone">
-            מספר טלפון <span className="text-cyan-400">*</span>
+            מספר טלפון <span className="text-brand-500">*</span>
           </label>
           <input
             id="phone"
@@ -131,7 +131,7 @@ export function ContactForm() {
             aria-describedby={errors.phone ? 'phone-error' : undefined}
           />
           {errors.phone ? (
-            <p id="phone-error" className="mt-1.5 text-xs text-rose-300">
+            <p id="phone-error" className="mt-1.5 text-xs text-rose-600">
               {errors.phone}
             </p>
           ) : null}
@@ -141,7 +141,7 @@ export function ContactForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="email">
-            כתובת דוא״ל <span className="text-cyan-400">*</span>
+            כתובת דוא״ל <span className="text-brand-500">*</span>
           </label>
           <input
             id="email"
@@ -156,7 +156,7 @@ export function ContactForm() {
             aria-describedby={errors.email ? 'email-error' : undefined}
           />
           {errors.email ? (
-            <p id="email-error" className="mt-1.5 text-xs text-rose-300">
+            <p id="email-error" className="mt-1.5 text-xs text-rose-600">
               {errors.email}
             </p>
           ) : null}
@@ -164,7 +164,7 @@ export function ContactForm() {
 
         <div>
           <label className="label" htmlFor="subject">
-            נושא הפנייה <span className="text-cyan-400">*</span>
+            נושא הפנייה <span className="text-brand-500">*</span>
           </label>
           <input
             id="subject"
@@ -177,7 +177,7 @@ export function ContactForm() {
             aria-describedby={errors.subject ? 'subject-error' : undefined}
           />
           {errors.subject ? (
-            <p id="subject-error" className="mt-1.5 text-xs text-rose-300">
+            <p id="subject-error" className="mt-1.5 text-xs text-rose-600">
               {errors.subject}
             </p>
           ) : null}
@@ -186,7 +186,7 @@ export function ContactForm() {
 
       <div>
         <label className="label" htmlFor="message">
-          כתבו לנו <span className="text-cyan-400">*</span>
+          כתבו לנו <span className="text-brand-500">*</span>
         </label>
         <textarea
           id="message"
@@ -199,7 +199,7 @@ export function ContactForm() {
           aria-describedby={errors.message ? 'message-error' : undefined}
         />
         {errors.message ? (
-          <p id="message-error" className="mt-1.5 text-xs text-rose-300">
+          <p id="message-error" className="mt-1.5 text-xs text-rose-600">
             {errors.message}
           </p>
         ) : null}
@@ -209,7 +209,7 @@ export function ContactForm() {
         שליחת פנייה
         <Send className="h-4 w-4" />
       </button>
-      <p className="text-xs leading-6 text-slate-500">
+      <p className="text-xs leading-6 text-muted">
         * שלב זה כולל בדיקת תקינות בלבד. הפנייה אינה נשלחת לשרת ואינה נשמרת.
       </p>
     </form>

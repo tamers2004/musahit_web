@@ -26,7 +26,7 @@ export function ModuleGlyph({ module, size = 'md', className }: ModuleGlyphProps
     return (
       <span
         className={cn(
-          'grid shrink-0 place-items-center overflow-hidden rounded-xl border border-white/10 bg-white shadow-sm',
+          'grid shrink-0 place-items-center overflow-hidden rounded-xl border border-line bg-white shadow-sm',
           sizes[size],
           className,
         )}
@@ -39,7 +39,7 @@ export function ModuleGlyph({ module, size = 'md', className }: ModuleGlyphProps
   return (
     <span
       className={cn(
-        'grid shrink-0 place-items-center rounded-xl border border-cyan-400/20 bg-cyan-400/5 text-cyan-300',
+        'grid shrink-0 place-items-center rounded-xl border border-brand-500/20 bg-brand-50 text-brand-600',
         sizes[size],
         className,
       )}

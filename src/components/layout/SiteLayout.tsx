@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { Header } from '@/components/navigation/Header'
 import { Footer } from '@/components/footer/Footer'
 import { ScrollToTop } from '@/components/layout/ScrollToTop'
+import { AccessibilityWidget } from '@/accessibility/AccessibilityWidget'
 
 export function SiteLayout() {
   return (
@@ -15,6 +16,7 @@ export function SiteLayout() {
         <Outlet />
       </main>
       <Footer />
+      <AccessibilityWidget />
     </div>
   )
 }

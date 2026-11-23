@@ -56,11 +56,11 @@ export default function Support() {
             return (
               <Reveal key={point.title} delay={index * 0.06}>
                 <div className="card h-full p-6">
-                  <span className="grid h-12 w-12 place-items-center rounded-xl border border-cyan-400/20 bg-cyan-400/5 text-cyan-300">
+                  <span className="grid h-12 w-12 place-items-center rounded-xl border border-brand-500/20 bg-brand-50 text-brand-600">
                     <IconComponent className="h-5 w-5" />
                   </span>
-                  <h2 className="mt-5 text-lg font-bold text-white">{point.title}</h2>
-                  <p className="mt-2 text-sm leading-7 text-slate-400">{point.text}</p>
+                  <h2 className="mt-5 text-lg font-bold text-ink-950">{point.title}</h2>
+                  <p className="mt-2 text-sm leading-7 text-muted">{point.text}</p>
                 </div>
               </Reveal>
             )
@@ -68,7 +68,7 @@ export default function Support() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/5">
+      <Section className="border-t border-line">
         <div className="grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-center">
           <SectionHeading
             eyebrow="פרטי התמיכה"
@@ -78,35 +78,35 @@ export default function Support() {
           <div className="card p-6 sm:p-8">
             <dl className="space-y-4 text-sm">
               <div className="flex items-center justify-between gap-4">
-                <dt className="text-slate-400">טלפון</dt>
+                <dt className="text-muted">טלפון</dt>
                 <dd>
-                  <a href={company.phoneHref} className="whitespace-nowrap font-semibold text-white" dir="ltr">
+                  <a href={company.phoneHref} className="whitespace-nowrap font-semibold text-ink-950" dir="ltr">
                     {company.phone}
                   </a>
                 </dd>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <dt className="text-slate-400">דוא״ל</dt>
+                <dt className="text-muted">דוא״ל</dt>
                 <dd>
-                  <a href={`mailto:${company.email}`} className="font-semibold text-white" dir="ltr">
+                  <a href={`mailto:${company.email}`} className="font-semibold text-ink-950" dir="ltr">
                     {company.email}
                   </a>
                 </dd>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <dt className="text-slate-400">שעות פעילות</dt>
-                <dd className="font-semibold text-white">{company.hours}</dd>
+                <dt className="text-muted">שעות פעילות</dt>
+                <dd className="font-semibold text-ink-950">{company.hours}</dd>
               </div>
             </dl>
           </div>
         </div>
       </Section>
 
-      <Section className="border-t border-white/5">
+      <Section className="border-t border-line">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <SmartImage
             image={images.supportHeadset}
-            className="w-full rounded-3xl border border-white/10 object-cover"
+            className="w-full rounded-3xl border border-line object-cover"
           />
           <div>
             <SectionHeading

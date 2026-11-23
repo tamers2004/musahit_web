@@ -32,24 +32,24 @@ export default function Modules() {
         if (!items.length) return null
 
         return (
-          <Section key={category.id} className="border-t border-white/5 first:border-t-0">
+          <Section key={category.id} className="border-t border-line first:border-t-0">
             <div className="max-w-2xl">
               <span className="eyebrow">{category.label}</span>
-              <p className="mt-4 text-base leading-8 text-slate-400">{category.description}</p>
+              <p className="mt-4 text-base leading-8 text-muted">{category.description}</p>
             </div>
 
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {items.map((module, index) => (
                 <Reveal key={module.slug} delay={index * 0.04}>
                   <Link to={`/modules/${module.slug}`} className="card group flex h-full flex-col p-6">
-                    <span className="grid h-12 w-12 place-items-center rounded-xl border border-cyan-400/20 bg-cyan-400/5 text-cyan-300">
+                    <span className="grid h-12 w-12 place-items-center rounded-xl border border-brand-500/20 bg-brand-50 text-brand-600">
                       <Icon name={module.icon} className="h-5 w-5" />
                     </span>
-                    <h2 className="mt-5 text-lg font-bold text-white transition-colors group-hover:text-cyan-200">
+                    <h2 className="mt-5 text-lg font-bold text-ink-950 transition-colors group-hover:text-brand-700">
                       {module.name}
                     </h2>
-                    <p className="mt-2 flex-1 text-sm leading-7 text-slate-400">{module.short}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
+                    <p className="mt-2 flex-1 text-sm leading-7 text-muted">{module.short}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-600">
                       לפרטים
                       <ArrowLeft className="h-4 w-4" />
                     </span>

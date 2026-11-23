@@ -8,7 +8,7 @@ import { ButtonLink } from '@/components/ui/ButtonLink'
 
 export function NewsSection() {
   return (
-    <Section className="border-t border-white/5">
+    <Section className="border-t border-line">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeading
           eyebrow="מה חדש"
@@ -26,11 +26,11 @@ export function NewsSection() {
           <Reveal key={item.slug} delay={index * 0.06}>
             <Link to={`/news/${item.slug}`} className="card group flex h-full flex-col p-6">
               <span className="eyebrow w-fit">{item.category}</span>
-              <h3 className="mt-4 text-lg font-bold text-white transition-colors group-hover:text-cyan-200">
+              <h3 className="mt-4 text-lg font-bold text-ink-950 transition-colors group-hover:text-brand-700">
                 {item.title}
               </h3>
-              <p className="mt-2 flex-1 text-sm leading-7 text-slate-400">{item.excerpt}</p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
+              <p className="mt-2 flex-1 text-sm leading-7 text-muted">{item.excerpt}</p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-600">
                 קראו עוד
                 <ArrowLeft className="h-4 w-4" />
               </span>

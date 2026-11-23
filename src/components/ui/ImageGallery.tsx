@@ -57,7 +57,7 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
         {items.map((item, index) => {
           const content = (
             <>
-              <span className="relative block overflow-hidden bg-white/[0.03]">
+              <span className="relative block overflow-hidden bg-surface-muted">
                 <SmartImage
                   image={item}
                   className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
@@ -67,13 +67,13 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
                 ) : null}
               </span>
               {item.caption ? (
-                <span className="block px-4 py-3 text-xs leading-6 text-slate-400">{item.caption}</span>
+                <span className="block px-4 py-3 text-xs leading-6 text-muted">{item.caption}</span>
               ) : null}
             </>
           )
 
           const classes =
-            'group mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-start'
+            'group mb-4 block w-full break-inside-avoid overflow-hidden rounded-2xl border border-line bg-surface-muted text-start'
 
           return lightbox ? (
             <button
@@ -96,7 +96,7 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
       {lightbox && activeItem
         ? createPortal(
             <div
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-ink-950/95 p-4 backdrop-blur-sm sm:p-8"
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-ink-950/85 p-4 backdrop-blur-sm sm:p-8"
               role="dialog"
               aria-modal="true"
               aria-label={activeItem.alt}
@@ -106,7 +106,7 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
                 ref={closeRef}
                 type="button"
                 onClick={close}
-                className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-ink-900/80 text-white transition-colors hover:bg-white/10 sm:right-8 sm:top-8"
+                className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full border border-line-strong bg-white/90 text-ink-950 transition-colors hover:bg-surface-muted sm:right-8 sm:top-8"
                 aria-label="סגירת תצוגה"
               >
                 <X className="h-5 w-5" />
@@ -119,7 +119,7 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
                     event.stopPropagation()
                     previous()
                   }}
-                  className="absolute right-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-ink-900/80 text-white transition-colors hover:bg-white/10 sm:right-8"
+                  className="absolute right-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-white/90 text-ink-950 transition-colors hover:bg-surface-muted sm:right-8"
                   aria-label="התמונה הקודמת"
                 >
                   <ChevronRight className="h-5 w-5" />
@@ -127,7 +127,7 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
               ) : null}
 
               <figure
-                className="max-h-[85vh] max-w-[92vw] overflow-hidden rounded-2xl border border-white/10 bg-ink-900 shadow-2xl"
+                className="max-h-[85vh] max-w-[92vw] overflow-hidden rounded-2xl border border-line bg-white shadow-2xl"
                 onClick={(event) => event.stopPropagation()}
               >
                 <SmartImage
@@ -136,7 +136,7 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
                   className="max-h-[78vh] w-auto max-w-full object-contain"
                 />
                 {activeItem.caption ? (
-                  <figcaption className="border-t border-white/10 px-5 py-3 text-center text-sm text-slate-300">
+                  <figcaption className="border-t border-line px-5 py-3 text-center text-sm text-ink-700">
                     {activeItem.caption}
                   </figcaption>
                 ) : null}
@@ -149,7 +149,7 @@ export function ImageGallery({ items, columns = 3, className, lightbox = true }:
                     event.stopPropagation()
                     next()
                   }}
-                  className="absolute left-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-ink-900/80 text-white transition-colors hover:bg-white/10 sm:left-8"
+                  className="absolute left-3 top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-white/90 text-ink-950 transition-colors hover:bg-surface-muted sm:left-8"
                   aria-label="התמונה הבאה"
                 >
                   <ChevronLeft className="h-5 w-5" />

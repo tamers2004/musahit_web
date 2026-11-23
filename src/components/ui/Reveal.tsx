@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import { useAccessibility } from '@/accessibility/AccessibilityContext'
 
 type RevealProps = {
   children: ReactNode
@@ -10,13 +11,19 @@ type RevealProps = {
 }
 
 export function Reveal({ children, className, delay = 0, y = 24 }: RevealProps) {
-  const reduced = useReducedMotion()
+  const prefersReduced = useReducedMotion()
+  const { settings } = useAccessibility()
+  const reduced = prefersReduced || settings.features.disableAnimations
+
+  if (reduced) {
+    return <div className={cn(className)}>{children}</div>
+  }
 
   return (
     <motion.div
       className={cn(className)}
-      initial={reduced ? false : { opacity: 0, y }}
-      whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
     >

@@ -57,11 +57,11 @@ export default function Training() {
             return (
               <Reveal key={point.title} delay={index * 0.06}>
                 <div className="card h-full p-6 sm:p-8">
-                  <span className="grid h-12 w-12 place-items-center rounded-xl border border-cyan-400/20 bg-cyan-400/5 text-cyan-300">
+                  <span className="grid h-12 w-12 place-items-center rounded-xl border border-brand-500/20 bg-brand-50 text-brand-600">
                     <IconComponent className="h-5 w-5" />
                   </span>
-                  <h2 className="mt-5 text-lg font-bold text-white">{point.title}</h2>
-                  <p className="mt-2 text-sm leading-7 text-slate-400">{point.text}</p>
+                  <h2 className="mt-5 text-lg font-bold text-ink-950">{point.title}</h2>
+                  <p className="mt-2 text-sm leading-7 text-muted">{point.text}</p>
                 </div>
               </Reveal>
             )
@@ -69,7 +69,7 @@ export default function Training() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/5">
+      <Section className="border-t border-line">
         <SectionHeading
           eyebrow="אפליקציית מוסכית לנייד"
           title="מידע עדכני בכל מקום"
@@ -94,7 +94,7 @@ export default function Training() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/5">
+      <Section className="border-t border-line">
         <SectionHeading
           eyebrow="מערכות בדיקה"
           title="צילומי מסך מהמערכות"

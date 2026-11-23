@@ -45,16 +45,16 @@ export default function NewsDetail() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/5">
+      <Section className="border-t border-line">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {related.map((entry, index) => (
             <Reveal key={entry.slug} delay={index * 0.05}>
               <Link to={`/news/${entry.slug}`} className="card group flex h-full flex-col p-6">
                 <span className="eyebrow w-fit">{entry.category}</span>
-                <h3 className="mt-4 text-lg font-bold text-white transition-colors group-hover:text-cyan-200">
+                <h3 className="mt-4 text-lg font-bold text-ink-950 transition-colors group-hover:text-brand-700">
                   {entry.title}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-7 text-slate-400">{entry.excerpt}</p>
+                <p className="mt-2 flex-1 text-sm leading-7 text-muted">{entry.excerpt}</p>
               </Link>
             </Reveal>
           ))}

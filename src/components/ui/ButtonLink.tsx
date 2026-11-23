@@ -7,7 +7,7 @@ type Variant = 'primary' | 'ghost' | 'soft'
 const variants: Record<Variant, string> = {
   primary: 'btn-primary',
   ghost: 'btn-ghost',
-  soft: 'btn border border-cyan-400/20 bg-cyan-400/5 text-cyan-200 hover:border-cyan-400/40 hover:bg-cyan-400/10',
+  soft: 'btn border border-brand-500/20 bg-brand-50 text-brand-700 hover:border-brand-500/40 hover:bg-brand-100',
 }
 
 type ButtonLinkProps = {

@@ -41,8 +41,8 @@ export default function About() {
             {companyFacts.map((fact, index) => (
               <Reveal key={fact.label} delay={index * 0.08}>
                 <div className="card h-full p-6">
-                  <span className="block text-3xl font-black text-white">{fact.value}</span>
-                  <span className="mt-2 block text-sm text-slate-400">{fact.label}</span>
+                  <span className="block text-3xl font-black text-ink-950">{fact.value}</span>
+                  <span className="mt-2 block text-sm text-muted">{fact.label}</span>
                 </div>
               </Reveal>
             ))}
@@ -50,7 +50,7 @@ export default function About() {
         </div>
       </Section>
 
-      <Section className="border-t border-white/5">
+      <Section className="border-t border-line">
         <SectionHeading
           eyebrow="בית התוכנה שלנו"
           title="חדשנות, פיתוח ומערכות בקנה מידה עולמי"
@@ -60,15 +60,15 @@ export default function About() {
           {aboutHighlights.map((highlight, index) => (
             <Reveal key={highlight.title} delay={index * 0.06}>
               <div className="card h-full p-6">
-                <h3 className="text-lg font-bold text-white">{highlight.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-400">{highlight.text}</p>
+                <h3 className="text-lg font-bold text-ink-950">{highlight.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-muted">{highlight.text}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      <Section className="border-t border-white/5">
+      <Section className="border-t border-line">
         <SectionHeading
           eyebrow="מהשטח"
           title="תמונות מהעבודה שלנו"

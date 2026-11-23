@@ -41,14 +41,14 @@ export function Header() {
       className={cn(
         'fixed inset-x-0 top-0 z-50 border-b transition-all duration-300',
         scrolled
-          ? 'border-white/10 bg-ink-950/85 shadow-lg shadow-black/20 backdrop-blur-xl'
-          : 'border-transparent bg-ink-950/40 backdrop-blur-sm',
+          ? 'border-line bg-white/95 shadow-[0_10px_30px_-22px_rgba(23,32,51,0.35)] backdrop-blur-md'
+          : 'border-transparent bg-white/90 backdrop-blur-sm',
       )}
     >
-      <div className="container-page flex h-20 items-center justify-between gap-4">
+      <div className="container-page flex h-[4.5rem] items-center justify-between gap-4">
         <Logo />
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="ניווט ראשי">
+        <nav className="hidden items-center gap-0.5 xl:flex" aria-label="ניווט ראשי">
           {navigation.map((item) => (
             <div key={item.to} className="group relative">
               <NavLink
@@ -57,8 +57,8 @@ export function Header() {
                   cn(
                     'inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                     isActive || isItemActive(pathname, item.to)
-                      ? 'text-cyan-300'
-                      : 'text-slate-300 hover:text-white',
+                      ? 'text-brand-600'
+                      : 'text-ink-700 hover:bg-surface-muted hover:text-ink-950',
                   )
                 }
               >
@@ -70,17 +70,17 @@ export function Header() {
 
               {item.children ? (
                 <div className="invisible absolute start-0 top-full z-50 w-80 translate-y-2 pt-2 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <div className="overflow-hidden rounded-2xl border border-white/10 bg-ink-900/95 p-2 shadow-2xl backdrop-blur-xl">
+                  <div className="overflow-hidden rounded-2xl border border-line bg-white p-2 shadow-soft">
                     {item.children.map((child) => (
                       <Link
                         key={child.to}
                         to={child.to}
                         onClick={(event) => event.currentTarget.blur()}
-                        className="flex flex-col rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5"
+                        className="flex flex-col rounded-xl px-3 py-2.5 transition-colors hover:bg-surface-muted"
                       >
-                        <span className="text-sm font-medium text-white">{child.label}</span>
+                        <span className="text-sm font-medium text-ink-950">{child.label}</span>
                         {child.description ? (
-                          <span className="mt-0.5 text-xs text-slate-400">{child.description}</span>
+                          <span className="mt-0.5 text-xs text-muted">{child.description}</span>
                         ) : null}
                       </Link>
                     ))}
@@ -94,18 +94,18 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href={company.phoneHref}
-            className="hidden items-center gap-2 whitespace-nowrap rounded-xl border border-white/10 px-3 py-2 text-sm font-medium text-slate-200 transition-colors hover:border-cyan-400/40 hover:text-white md:inline-flex"
+            className="hidden items-center gap-2 whitespace-nowrap rounded-xl border border-line px-3 py-2 text-sm font-medium text-ink-900 transition-colors hover:border-brand-500/40 hover:bg-brand-50 hover:text-brand-700 md:inline-flex"
             dir="ltr"
           >
-            <Phone className="h-4 w-4 text-cyan-300" />
+            <Phone className="h-4 w-4 text-brand-500" />
             {company.phone}
           </a>
-          <Link to="/contact" className="btn-primary hidden sm:inline-flex">
+          <Link to="/contact" className="btn-primary hidden px-5 py-2.5 sm:inline-flex">
             צרו קשר
           </Link>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 text-white transition-colors hover:bg-white/5 lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-line text-ink-900 transition-colors hover:bg-surface-muted xl:hidden"
             aria-label={mobileOpen ? 'סגירת תפריט' : 'פתיחת תפריט'}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((open) => !open)}
@@ -118,15 +118,18 @@ export function Header() {
       <AnimatePresence>
         {mobileOpen ? (
           <motion.div
-            className="lg:hidden"
+            className="xl:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="fixed inset-0 top-20 bg-black/50" onClick={() => setMobileOpen(false)} />
+            <div
+              className="fixed inset-0 top-[4.5rem] bg-ink-950/30"
+              onClick={() => setMobileOpen(false)}
+            />
             <motion.nav
-              className="relative max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-white/10 bg-ink-950 px-5 pb-8 pt-4"
+              className="relative max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-line bg-white px-5 pb-8 pt-4"
               initial={{ y: -12, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -12, opacity: 0 }}
@@ -144,7 +147,7 @@ export function Header() {
                           to={item.to}
                           className={cn(
                             'flex-1 rounded-lg px-3 py-3 text-base font-medium',
-                            active ? 'text-cyan-300' : 'text-slate-200',
+                            active ? 'text-brand-600' : 'text-ink-900',
                           )}
                         >
                           {item.label}
@@ -152,7 +155,7 @@ export function Header() {
                         {item.children ? (
                           <button
                             type="button"
-                            className="grid h-10 w-10 place-items-center rounded-lg text-slate-300 hover:bg-white/5"
+                            className="grid h-10 w-10 place-items-center rounded-lg text-ink-700 hover:bg-surface-muted"
                             aria-label={`הצגת ${item.label}`}
                             aria-expanded={expanded}
                             onClick={() => setMobileSection(expanded ? null : item.to)}
@@ -164,12 +167,12 @@ export function Header() {
                         ) : null}
                       </div>
                       {item.children && expanded ? (
-                        <div className="mb-2 ms-3 border-s border-white/10 ps-3">
+                        <div className="mb-2 ms-3 border-s border-line ps-3">
                           {item.children.map((child) => (
                             <Link
                               key={child.to}
                               to={child.to}
-                              className="block rounded-lg px-3 py-2 text-sm text-slate-400 hover:text-white"
+                              className="block rounded-lg px-3 py-2 text-sm text-muted hover:bg-surface-muted hover:text-ink-950"
                             >
                               {child.label}
                             </Link>
@@ -181,12 +184,16 @@ export function Header() {
                 })}
               </ul>
 
-              <div className="mt-5 flex flex-col gap-3 border-t border-white/10 pt-5">
+              <div className="mt-5 flex flex-col gap-3 border-t border-line pt-5">
                 <Link to="/contact" className="btn-primary w-full">
                   צרו קשר
                 </Link>
-                <a href={company.phoneHref} className="btn-ghost w-full whitespace-nowrap" dir="ltr">
-                  <Phone className="h-4 w-4" />
+                <a
+                  href={company.phoneHref}
+                  className="btn-ghost w-full whitespace-nowrap"
+                  dir="ltr"
+                >
+                  <Phone className="h-4 w-4 text-brand-500" />
                   {company.phone}
                 </a>
               </div>

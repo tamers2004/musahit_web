@@ -1,13 +1,11 @@
 import { Seo } from '@/components/ui/Seo'
 import { company } from '@/data/site'
 import { Hero } from '@/components/sections/Hero'
-import { Experience } from '@/components/sections/Experience'
-import { ProductsShowcase } from '@/components/sections/ProductsShowcase'
 import { MusachitSpotlight } from '@/components/sections/MusachitSpotlight'
+import { ProductsShowcase } from '@/components/sections/ProductsShowcase'
+import { Experience } from '@/components/sections/Experience'
 import { AdditionalSolutions } from '@/components/sections/AdditionalSolutions'
-import { ServicesSection } from '@/components/sections/ServicesSection'
 import { ClientsSection } from '@/components/sections/ClientsSection'
-import { NewsSection } from '@/components/sections/NewsSection'
 import { ContactCTA } from '@/components/sections/ContactCTA'
 
 export default function Home() {
@@ -18,13 +16,11 @@ export default function Home() {
         description={company.description}
       />
       <Hero />
-      <Experience />
-      <ProductsShowcase />
       <MusachitSpotlight />
+      <ProductsShowcase />
+      <Experience />
       <AdditionalSolutions />
-      <ServicesSection />
       <ClientsSection />
-      <NewsSection />
       <ContactCTA />
     </>
   )

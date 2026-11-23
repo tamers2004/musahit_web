@@ -34,13 +34,13 @@ export default function Products() {
               <article className="card flex h-full flex-col p-5 sm:p-6">
                 <ProductVisual product={product} className="mb-6" />
                 <span className="eyebrow w-fit">{product.tagline}</span>
-                <h2 className="mt-4 text-2xl font-bold text-white">{product.name}</h2>
-                <p className="mt-3 text-sm leading-7 text-slate-400">{product.short}</p>
+                <h2 className="mt-4 text-2xl font-bold text-ink-950">{product.name}</h2>
+                <p className="mt-3 text-sm leading-7 text-muted">{product.short}</p>
 
                 <ul className="mt-5 space-y-2">
                   {product.features.slice(0, 3).map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm text-slate-300">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
+                    <li key={feature} className="flex items-start gap-2 text-sm text-ink-700">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -48,7 +48,7 @@ export default function Products() {
 
                 <Link
                   to={`/products/${product.slug}`}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 transition-colors hover:text-cyan-200"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700"
                 >
                   קראו עוד
                   <ArrowLeft className="h-4 w-4" />

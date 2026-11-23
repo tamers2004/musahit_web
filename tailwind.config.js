@@ -4,37 +4,50 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: {
-          950: '#060b16',
-          900: '#0a1222',
-          800: '#0f1b30',
-          700: '#16243d',
+        brand: {
+          50: '#EEF5FF',
+          100: '#DCEBFF',
+          200: '#C3DDFF',
+          400: '#3B82F6',
+          500: '#1769D2',
+          600: '#1257B0',
+          700: '#0F4A96',
         },
-        accent: {
-          400: '#38bdf8',
-          500: '#06b6d4',
-          600: '#0891b2',
+        ink: {
+          950: '#172033',
+          900: '#1D283C',
+          800: '#2A3750',
+          700: '#3B4A66',
+        },
+        muted: {
+          DEFAULT: '#687386',
+          light: '#8B95A7',
+        },
+        line: {
+          DEFAULT: '#E7ECF2',
+          strong: '#D5DEE9',
+        },
+        surface: {
+          DEFAULT: '#FFFFFF',
+          muted: '#F7F9FC',
+          tint: '#EEF5FF',
         },
       },
       fontFamily: {
         sans: ['Heebo', 'Assistant', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        glow: '0 0 80px -20px rgba(6, 182, 212, 0.45)',
+        soft: '0 18px 50px -24px rgba(23, 32, 51, 0.18)',
+        card: '0 8px 30px -18px rgba(23, 32, 51, 0.15)',
       },
       keyframes: {
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' },
-        },
       },
       animation: {
         marquee: 'marquee 38s linear infinite',
-        float: 'float 7s ease-in-out infinite',
       },
     },
   },

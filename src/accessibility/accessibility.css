@@ -1,0 +1,136 @@
+/* Central accessibility styles — toggled by AccessibilityProvider on <html>. */
+
+.a11y-reading-ruler {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 2.75rem;
+  z-index: 70;
+  pointer-events: none;
+  background: rgba(23, 105, 210, 0.16);
+  border-top: 2px solid rgba(23, 105, 210, 0.6);
+  border-bottom: 2px solid rgba(23, 105, 210, 0.6);
+  transition: top 0.06s linear;
+}
+
+html.a11y-accessible body,
+html.a11y-accessible button,
+html.a11y-accessible input,
+html.a11y-accessible textarea,
+html.a11y-accessible select {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+html.a11y-accessible p,
+html.a11y-accessible li {
+  line-height: 1.85;
+}
+
+html.a11y-accessible a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+html.a11y-accessible :is(h1, h2, h3, h4, h5, h6) {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+html.a11y-keyboard :is(a, button, input, select, textarea, summary, [tabindex]):focus {
+  outline: 3px solid #0b57d0 !important;
+  outline-offset: 3px !important;
+}
+
+html.a11y-no-motion *,
+html.a11y-no-motion *::before,
+html.a11y-no-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+html.a11y-readable body,
+html.a11y-readable button,
+html.a11y-readable input,
+html.a11y-readable textarea,
+html.a11y-readable select {
+  font-family: Arial, 'Noto Sans Hebrew', 'Segoe UI', sans-serif !important;
+}
+
+html.a11y-underline a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+html.a11y-headings :is(h1, h2, h3, h4, h5, h6) {
+  background-image: linear-gradient(transparent 58%, rgba(255, 214, 10, 0.6) 58%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+html.a11y-links :is(a, button) {
+  outline: 2px solid #d97706 !important;
+  outline-offset: 2px !important;
+  border-radius: 6px;
+}
+
+html.a11y-cursor,
+html.a11y-cursor * {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'><path d='M5 2 L5 28 L12 21 L17 33 L22 31 L17 19 L27 19 Z' fill='%231760d2' stroke='white' stroke-width='2'/></svg>") 5 2, auto !important;
+}
+
+html.a11y-contrast body {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+html.a11y-contrast :is(p, li, span, dd, dt, label, figcaption, small) {
+  color: #000000 !important;
+}
+
+html.a11y-contrast :is(h1, h2, h3, h4, h5, h6) {
+  color: #000000 !important;
+}
+
+html.a11y-contrast a {
+  color: #0000ee !important;
+  text-decoration: underline !important;
+}
+
+html.a11y-contrast :is(.card, .glass, .btn-ghost, .field, .eyebrow) {
+  background: #ffffff !important;
+  border-color: #000000 !important;
+  box-shadow: none !important;
+  color: #000000 !important;
+}
+
+html.a11y-contrast .btn-primary {
+  background: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.a11y-contrast .eyebrow {
+  color: #000000 !important;
+}
+
+html.a11y-contrast img {
+  filter: contrast(1.15);
+}
+
+html.a11y-invert img,
+html.a11y-invert video,
+html.a11y-invert canvas {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+html.a11y-spacing body {
+  letter-spacing: var(--a11y-letter-spacing, 0em);
+  word-spacing: var(--a11y-word-spacing, 0em);
+}
+
+html.a11y-spacing :is(p, li, .prose-he p, .prose-he li) {
+  line-height: var(--a11y-line-height, 1.8) !important;
+}
